@@ -83,7 +83,7 @@ namespace ZooApplication.Controllers
         }
 
 
-        //POST: Animal/Associate/{animalid}
+        //POST: Animal/Associate/{AnimalId}/{KeeperID}
         [HttpPost]
         public ActionResult Associate(int id, int KeeperID)
         {

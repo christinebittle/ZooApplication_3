@@ -59,6 +59,11 @@ namespace ZooApplication.Controllers
         [ResponseType(typeof(KeeperDto))]
         public IHttpActionResult ListKeepersForAnimal(int id)
         {
+
+            //SQL Equivalent:
+            //select keepers.*, keeperanimals.* from animals inner join keeperanimals on keeperanimals.keeperid = keepers.keeperid where
+            //keeperanimals.animalid = {id}
+
             List<Keeper> Keepers = db.Keepers.Where(
                 k=>k.Animals.Any(
                     a=>a.AnimalID==id)

@@ -60,6 +60,8 @@ namespace ZooApplication.Controllers
         [ResponseType(typeof(AnimalDto))]
         public IHttpActionResult ListAnimalsForSpecies(int id)
         {
+            //SQL Equivalent:
+            //Select * from animals where animals.speciesid = {id}
             List<Animal> Animals = db.Animals.Where(a=>a.SpeciesID==id).ToList();
             List<AnimalDto> AnimalDtos = new List<AnimalDto>();
 
@@ -90,6 +92,11 @@ namespace ZooApplication.Controllers
         [ResponseType(typeof(AnimalDto))]
         public IHttpActionResult ListAnimalsForKeeper(int id)
         {
+            //SQL equivalent:
+            //select animals.*, keeperanimals.* from animals INNER JOIN 
+            //keeperanimals on animals.animalid = keeperanimals.animalid
+            //where keeperanimals.keeperid={KEEPERID}
+
             //all animals that have keepers which match with our ID
             List<Animal> Animals = db.Animals.Where(
                 a=>a.Keepers.Any(
@@ -141,6 +148,8 @@ namespace ZooApplication.Controllers
             Debug.WriteLine("input keeper id is: " + keeperid);
             Debug.WriteLine("selected keeper name is: " + SelectedKeeper.KeeperFirstName);
 
+            //SQL equivalent:
+            //insert into keeperanimals (animalid, keeperid) values ({aid},{kid})
 
             SelectedAnimal.Keepers.Add(SelectedKeeper);
             db.SaveChanges();
@@ -179,6 +188,7 @@ namespace ZooApplication.Controllers
             Debug.WriteLine("input keeper id is: " + keeperid);
             Debug.WriteLine("selected keeper name is: " + SelectedKeeper.KeeperFirstName);
 
+            //todo: verify that the keeper actually is keeping track of the animal
 
             SelectedAnimal.Keepers.Remove(SelectedKeeper);
             db.SaveChanges();
