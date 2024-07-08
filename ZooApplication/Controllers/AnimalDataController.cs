@@ -98,8 +98,8 @@ namespace ZooApplication.Controllers
             //where keeperanimals.keeperid={KEEPERID}
 
             //all animals that have keepers which match with our ID
-            List<Animal> Animals = db.Animals.Where(animal => 
-                animal.Keepers.Any(
+            List<Animal> Animals = db.Animals.Where(
+                animal => animal.Keepers.Any(
                     keeper => keeper.KeeperID == id)
                 ).ToList();
             List<AnimalDto> AnimalDtos = new List<AnimalDto>();
@@ -168,7 +168,7 @@ namespace ZooApplication.Controllers
         /// HEADER: 404 (NOT FOUND)
         /// </returns>
         /// <example>
-        /// POST api/AnimalData/AssociateAnimalWithKeeper/9/1
+        /// POST api/AnimalData/UnAssociateAnimalWithKeeper/9/1
         /// </example>
         [HttpPost]
         [Route("api/AnimalData/UnAssociateAnimalWithKeeper/{animalid}/{keeperid}")]
