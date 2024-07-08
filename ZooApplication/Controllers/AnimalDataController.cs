@@ -98,10 +98,10 @@ namespace ZooApplication.Controllers
             //where keeperanimals.keeperid={KEEPERID}
 
             //all animals that have keepers which match with our ID
-            List<Animal> Animals = db.Animals.Where(
-                a=>a.Keepers.Any(
-                    k=>k.KeeperID==id
-                )).ToList();
+            List<Animal> Animals = db.Animals.Where(animal => 
+                animal.Keepers.Any(
+                    keeper => keeper.KeeperID == id)
+                ).ToList();
             List<AnimalDto> AnimalDtos = new List<AnimalDto>();
 
             Animals.ForEach(a => AnimalDtos.Add(new AnimalDto()

@@ -207,7 +207,7 @@ namespace ZooApplication.Controllers
             }
         }
 
-        // GET: Animal/Delete/5
+        // GET: Animal/DeleteConfirm/5
         public ActionResult DeleteConfirm(int id)
         {
             string url = "animaldata/findanimal/" + id;
